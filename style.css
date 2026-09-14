@@ -1,94 +1,281 @@
-body {
-  font-family: "Lato", sans-serif;
-  transition: background-color .5s;
-}
+  :root {
+    --sidebar-w: 240px;
+    --header-h: 60px;
+    --bg: #f5f3ef;
+    --ink: #1c1a17;
+    --accent: #b5542a;
+    --card: #ffffff;
+    --line: #e2ddd4;
+  }
 
-.sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--bg);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
 
-.sidenav a:hover {
-  color: #f1f1f1;
-}
+  /* ---------- MENU ICON ---------- */
+  .menu-icon {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 1000;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.92);
+    border: 1px solid var(--line);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    transition: transform 0.2s ease;
+  }
+  .menu-icon:hover { transform: scale(1.06); }
+  .menu-icon span {
+    display: block;
+    width: 19px;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .menu-icon.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-icon.open span:nth-child(2) { opacity: 0; }
+  .menu-icon.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
+  /* ---------- SIDEBAR (flyout style) ---------- */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: var(--sidebar-w);
+    background: var(--card);
+    border-right: 1px solid var(--line);
+    z-index: 900;
+    transform: translateX(-100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: visible;
+    box-shadow: 4px 0 24px rgba(0,0,0,0.08);
+  }
+  .sidebar.expanded { transform: translateX(0); }
 
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
+  .nav-list { list-style: none; padding-top: 72px; }
 
-.dropdown .dropbtn {
-  font-size: 16px;  
-  border: none;
-  outline: none;
-  color: white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
+  .nav-item > button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px 20px;
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--ink);
+    cursor: pointer;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+    transition: background 0.2s;
+  }
+  .nav-item > button:hover { background: var(--bg); }
+  .nav-arrow {
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+    color: var(--accent);
+  }
+  .nav-item.hovered > button .nav-arrow { transform: rotate(90deg); }
 
-.navbar a:hover, .dropdown:hover .dropbtn {
-  color: red;
-}
+  /* Level 2 flyout — appears to the RIGHT of its parent */
+  .sub-list {
+    list-style: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    min-width: 200px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: none;
+    box-shadow: 4px 4px 16px rgba(0,0,0,0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+    z-index: 910;
+  }
+  .nav-item { position: relative; }
+  .nav-item.hovered > .sub-list {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #111;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
+  .sub-list li > button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 18px;
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 0.92rem;
+    color: #555;
+    cursor: pointer;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+    transition: background 0.2s, color 0.2s;
+  }
+  .sub-list li > button:hover { background: var(--bg); color: var(--ink); }
+  .sub-list .nav-arrow { font-size: 0.65rem; }
+  .sub-item { position: relative; }
+  .sub-item.hovered > button .nav-arrow { transform: rotate(90deg); }
 
-.dropdown-content a {
-  float: none;
-  color: white;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: inline;
-  text-align: left;
-}
+  /* Level 3 flyout — appears to the RIGHT of its parent subsection */
+  .subsub-list {
+    list-style: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    min-width: 180px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: none;
+    box-shadow: 4px 4px 16px rgba(0,0,0,0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+    z-index: 920;
+  }
+  .sub-item.hovered > .subsub-list {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
 
-.dropdown-content a:hover {
-  background-color: #ddd;
-  color: black;
-}
+  .subsub-list li > a {
+    display: block;
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    color: #777;
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    transition: color 0.2s, background 0.2s;
+  }
+  .subsub-list li > a:hover { color: var(--accent); background: var(--bg); }
 
-.dropdown:hover .dropdown-content {
-  display: inline;
+  /* ---------- HERO WITH PARALLAX ---------- */
+  .hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: -20% 0;
+    background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80') center/cover no-repeat;
+    will-change: transform;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4));
+    z-index: 1;
+  }
 
-#main {
-  transition: margin-left .5s;
-  padding: 16px;
-}
+  /* Title that sticks and shrinks */
+  .hero-title-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+  }
+  .hero-title {
+    color: #fff;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    text-align: center;
+    padding: 0 20px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    transition: font-size 0.1s linear, letter-spacing 0.1s linear;
+    will-change: font-size;
+  }
 
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
+  /* After the hero, the title lives in the header bar */
+  .header-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-h);
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    z-index: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+  }
+  .header-bar.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .header-bar h1 {
+    font-size: 1.2rem;
+    font-weight: normal;
+    letter-spacing: 0.03em;
+    color: var(--ink);
+  }
+
+  /* ---------- CONTENT SECTIONS ---------- */
+  .section {
+    min-height: 60vh;
+    padding: 80px 8%;
+    border-bottom: 1px solid var(--line);
+  }
+  .section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--accent);
+  }
+  .section p {
+    max-width: 640px;
+    line-height: 1.7;
+    color: #444;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--ink);
+    color: #ccc;
+    padding: 40px 8%;
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+

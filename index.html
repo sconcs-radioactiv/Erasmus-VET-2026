@@ -1,84 +1,93 @@
 <!DOCTYPE html>
 
-<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Erasmus+ VET 2026</title>
+</head>
+<body>
 
-  <script src="script.js"></script>
+  <button class="menu-icon" id="menuIcon" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erasmus+ VET 2026</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
+  <nav class="sidebar" id="sidebar">
+    <ul class="nav-list">
+      
+      <li class="nav-item">
+        <button>Acasa</button>
+      </li>
 
-  <body>
-    <header>
-            <div id="mySidenav" class="sidenav">
+     
+      <li class="nav-item has-sub">
+        <button>Spania <span class="nav-arrow">▶</span></button>
+        <ul class="sub-list">
+          <li class="sub-item"><button>Experienta culturala</button></li>
+          <li class="sub-item has-subsub">
+            <button>Experienta profesionala<span class="nav-arrow">▶</span></button>
+            <ul class="subsub-list">
+              <li><a href="#">Mate-Info</a></li>
+              <li><a href="#">Pedagogie</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    
+      <li class="nav-item has-sub">
+        <button>Spania <span class="nav-arrow">▶</span></button>
+        <ul class="sub-list">
+          <li class="sub-item"><button>Experienta culturala</button></li>
+          <li class="sub-item has-subsub">
+            <button>Experienta profesionala<span class="nav-arrow">▶</span></button>
+            <ul class="subsub-list">
+              <li><a href="#">Mate-Info</a></li>
+              <li><a href="#">Pedagogie</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="nav-item has-sub">
+        <button>Activitati de diseminare<span class="nav-arrow">▶</span></button>
+        <ul class="sub-list">
+          <li class="sub-item"><button>Articol ziar</button></li>
+          <li class="sub-item"><button>Emisiune radio</button></li>
+          <li class="sub-item"><button>Emisiune TV</button></li>
+        </ul>
+      </li>
 
-              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-              <a href="#">Acasa</a>
+    </ul>
+  </nav>
 
-              <div class="dropdown">
-                <button class="dropbtn">Spania</button>
-                <div class="dropdown-content">
-                  <a href="#">Experienta culturala</a>
+  <div class="header-bar" id="headerBar">
+    <h1>Your Website Title</h1>
+  </div>
 
-                  <button class="dropbtn">Experienta profesionala</button>
-                  <div class="dropdown-content">
-                    <a href="#">Mate-Info</a>
-                    <a href="#">Pedagogie</a>
-                  </div>
+  <section class="hero" id="hero">
+    <div class="hero-bg" id="heroBg" style="transform: translateY(0px);"></div>
+    <div class="hero-title-wrapper">
+      <h1 class="hero-title" id="heroTitle" style="opacity: 1; font-size: 45.7px;">Erasmus+ VET 2026</h1>
+    </div>
+  </section>
 
-                </div>
-              </div>
- 
-              <div class="dropdown">
-                <button class="dropbtn">Spania</button>
-                <div class="dropdown-content">
-                  <a href="#">Experienta culturala</a>
+  <section class="section">
+    <h2>About</h2>
+    <p>Placeholder content. Replace with your own text. The parallax photo scrolls slower than the page, and the title shrinks as it approaches the top edge before handing off to the header bar.</p>
+  </section>
 
-                  <button class="dropbtn">Experienta profesionala</button>
-                  <div class="dropdown-content">
-                    <a href="#">Mate-Info</a>
-                    <a href="#">Pedagogie</a>
-                  </div>
+  <section class="section">
+    <h2>Details</h2>
+    <p>Add more sections here. Adjust colors via the CSS variables at the top of the stylesheet.</p>
+  </section>
 
-                </div>
-              </div>
+  <section class="section">
+    <h2>Contact</h2>
+    <p>Put contact information or a form here before the footer.</p>
+  </section>
 
-              <a href="#">Activitati de diseminare</a>
+  <footer>
+    <p>©2026 Colegiul National de Informatica "Matei Basarab"</p>
+  </footer>
 
-            </div>
- 
-            <div id="titlebar">
-                <span onclick="openNav()">0</span>
-                <img src="assets/logo.png">
-                <h1>Erasmus+ VET 2026</h1>
-            </div>
 
-    </header>
-
-    <main>
-            <div>
-                
-                <div id="about">
-                    <div id="aboutp">
-                        <br><br>
-                        <h1>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </h1>
-                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    </div>
-                    <img src="assets/logo.png" id="abtImg">
-                </div>
-
-                            </div>
-    </main>
-
-    <footer>
-      2026 Colegiul National de Informatica "Matei Basarab"
-    </footer>
-
-  </body>
-
-</html>
+</body>
