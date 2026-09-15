@@ -1,6 +1,16 @@
-  :root {
+@font-face {
+  font-family: mainframe;
+  src: url(assets/Mainframe-Regular.ttf);
+}
+
+@font-face {
+  font-family: boogaloo;
+  src: url(assets/BOOGALOO.TTF);
+}
+
+:root {
     --sidebar-w: 240px;
-    --header-h: 60px;
+    --header-h: 80px;
     --bg: #f5f3ef;
     --ink: #1c1a17;
     --accent: #b5542a;
@@ -11,7 +21,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: mainframe;
     background: var(--bg);
     color: var(--ink);
     overflow-x: hidden;
@@ -25,30 +35,28 @@
     z-index: 1000;
     width: 44px;
     height: 44px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.92);
-    border: 1px solid var(--line);
+    background-color: transparent;
     cursor: pointer;
     display: flex;
+    border: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 5px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
     transition: transform 0.2s ease;
   }
-  .menu-icon:hover { transform: scale(1.06); }
+  .menu-icon:hover { transform: scale(1.06);}
   .menu-icon span {
     display: block;
     width: 19px;
     height: 2px;
-    background: var(--ink);
+    background: var(--line);
     border-radius: 2px;
     transition: transform 0.3s ease, opacity 0.3s ease;
   }
-  .menu-icon.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-icon.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--ink); }
   .menu-icon.open span:nth-child(2) { opacity: 0; }
-  .menu-icon.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .menu-icon.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--ink)}
 
   /* ---------- SIDEBAR (flyout style) ---------- */
   .sidebar {
@@ -184,7 +192,7 @@
   .hero-bg {
     position: absolute;
     inset: -20% 0;
-    background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80') center/cover no-repeat;
+    background: url(assets/cabo_de_roca1.jpg) center/cover no-repeat;
     will-change: transform;
   }
   .hero::after {
@@ -209,7 +217,8 @@
   }
   .hero-title {
     color: #fff;
-    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-family: boogaloo;
+    font-size: clamp(2.5rem, 7vw ,5rem);
     font-weight: normal;
     letter-spacing: 0.02em;
     text-align: center;
@@ -226,13 +235,15 @@
     left: 0;
     right: 0;
     height: var(--header-h);
-    background: rgba(255,255,255,0.95);
+    background: var(--accent);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--line);
     z-index: 800;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
+    padding-left: 3.6rem;
+    padding-bottom: 0.3rem;
     opacity: 0;
     transform: translateY(-100%);
     transition: opacity 0.3s ease, transform 0.3s ease;
@@ -244,10 +255,10 @@
     pointer-events: auto;
   }
   .header-bar h1 {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     font-weight: normal;
     letter-spacing: 0.03em;
-    color: var(--ink);
+    color: var(--line);
   }
 
   /* ---------- CONTENT SECTIONS ---------- */
