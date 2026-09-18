@@ -146,6 +146,8 @@
     border-bottom: 1px solid var(--line);
     transition: background 0.2s, color 0.2s;
   }
+
+  
   .sub-list li > button:hover { background: var(--bg); color: var(--ink); }
   .sub-list .nav-arrow { font-size: 0.65rem; }
   .sub-item { position: relative; }
@@ -197,7 +199,6 @@
   .hero-bg {
     position: absolute;
     inset: -20% 0;
-    background: url(assets/cabo_de_roca1.jpg) center/cover no-repeat;
     will-change: transform;
   }
   .hero::after {
@@ -295,3 +296,70 @@
   footer a { color: var(--accent); text-decoration: none; }
   footer a:hover { text-decoration: underline; }
 
+nav button a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ---------- REZOLVARE MOBIL (DOAR CSS) ---------- */
+@media (max-width: 768px) {
+
+  /* 1. PERMITE SCROLL VERTICAL ÎN SIDEBAR */
+  .sidebar {
+    width: 85vw;
+    max-height: 100vh;
+    max-height: 100dvh;
+    overflow-y: auto !important; /* Activează scroll-ul când submeniurile extind lista */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-list {
+    padding-bottom: 60px; /* Spațiu la final ca să poți face scroll ușor */
+  }
+
+  /* 2. SCHIMBĂ SUBMENIURILE DIN ZBURĂTOARE (DREAPTA) ÎN DROPDOWN (JOS) */
+  .sub-list,
+  .subsub-list {
+    position: static !important; /* Scoate elementul din afara fluxului și îl pune direct sub buton */
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-left: 2px solid var(--accent); /* Linie vizuală de ghidaj */
+    background: rgba(0, 0, 0, 0.03);
+    
+    /* Stare inițială ascunsă (restrânsă) */
+    display: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+
+  .subsub-list {
+    background: rgba(0, 0, 0, 0.06);
+  }
+
+  /* 3. DESCHIDEREA SUBMENIULUI (CÂND PARENT-UL ARE CLASA .hovered) */
+  .nav-item.hovered > .sub-list,
+  .sub-item.hovered > .subsub-list {
+    display: block !important;
+  }
+
+  /* 4. REZOLVARE ÎNCHIDERE PE MOBIL (STARE ACTIVE / FOCUS) */
+  /* Pe ecran tactil, `:focus-within` permite deschiderea la apăsare și închiderea când apeși în altă parte */
+  .nav-item:focus-within > .sub-list,
+  .sub-item:focus-within > .subsub-list {
+    display: block !important;
+  }
+
+  /* 5. INDENTARE TEXT PENTRU IERARHIE CĂUTATĂ */
+  .sub-list li > button {
+    padding-left: 30px;
+  }
+
+  .subsub-list li > a {
+    padding-left: 45px;
+  }
+}
