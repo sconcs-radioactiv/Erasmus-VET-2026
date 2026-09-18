@@ -4,18 +4,23 @@
 }
 
 @font-face {
-  font-family: boogaloo;
-  src: url(assets/BOOGALOO.TTF);
+  font-family: strarat;
+  src: url(assets/strarat.ttf);
+}
+
+@font-face {
+  font-family: epunk;
+  src: url("assets/electric-punk.otf") format("opentype");
 }
 
 :root {
     --sidebar-w: 240px;
     --header-h: 80px;
-    --bg: #f5f3ef;
-    --ink: #1c1a17;
-    --accent: #b5542a;
-    --card: #ffffff;
-    --line: #e2ddd4;
+    --bg: #EDE0D1;
+    --ink: #291F0E;
+    --accent: #364B66;
+    --card: #f7eee1;
+    --line: #ede0d1;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -216,9 +221,9 @@
     pointer-events: none;
   }
   .hero-title {
-    color: #fff;
-    font-family: boogaloo;
-    font-size: clamp(2.5rem, 7vw ,5rem);
+    color: var(--bg);
+    font-family: epunk;
+    font-size: 10rem;
     font-weight: normal;
     letter-spacing: 0.02em;
     text-align: center;
@@ -281,7 +286,7 @@
   /* ---------- FOOTER ---------- */
   footer {
     background: var(--ink);
-    color: #ccc;
+    color: var(--bg);
     padding: 40px 8%;
     text-align: center;
     font-size: 0.9rem;
