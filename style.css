@@ -22,9 +22,7 @@
     --card: #f7eee1;
     --line: #ede0d1;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     font-family: mainframe;
     background: var(--bg);
@@ -63,6 +61,11 @@
   .menu-icon.open span:nth-child(2) { opacity: 0; }
   .menu-icon.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--ink)}
 
+
+
+
+
+  
   /* ---------- SIDEBAR (flyout style) ---------- */
   .sidebar {
     position: fixed;
@@ -79,9 +82,7 @@
     box-shadow: 4px 0 24px rgba(0,0,0,0.08);
   }
   .sidebar.expanded { transform: translateX(0); }
-
   .nav-list { list-style: none; padding-top: 72px; }
-
   .nav-item > button {
     display: flex;
     align-items: center;
@@ -105,8 +106,6 @@
     color: var(--accent);
   }
   .nav-item.hovered > button .nav-arrow { transform: rotate(90deg); }
-
-  /* Level 2 flyout — appears to the RIGHT of its parent */
   .sub-list {
     list-style: none;
     position: absolute;
@@ -129,7 +128,6 @@
     visibility: visible;
     transform: translateX(0);
   }
-
   .sub-list li > button {
     display: flex;
     align-items: center;
@@ -146,14 +144,10 @@
     border-bottom: 1px solid var(--line);
     transition: background 0.2s, color 0.2s;
   }
-
-  
   .sub-list li > button:hover { background: var(--bg); color: var(--ink); }
   .sub-list .nav-arrow { font-size: 0.65rem; }
   .sub-item { position: relative; }
   .sub-item.hovered > button .nav-arrow { transform: rotate(90deg); }
-
-  /* Level 3 flyout — appears to the RIGHT of its parent subsection */
   .subsub-list {
     list-style: none;
     position: absolute;
@@ -175,7 +169,6 @@
     visibility: visible;
     transform: translateX(0);
   }
-
   .subsub-list li > a {
     display: block;
     padding: 10px 16px;
@@ -186,6 +179,17 @@
     transition: color 0.2s, background 0.2s;
   }
   .subsub-list li > a:hover { color: var(--accent); background: var(--bg); }
+  nav button a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+
+
+
+
+
+
 
   /* ---------- HERO WITH PARALLAX ---------- */
   .hero {
@@ -208,8 +212,6 @@
     background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4));
     z-index: 1;
   }
-
-  /* Title that sticks and shrinks */
   .hero-title-wrapper {
     position: sticky;
     top: 0;
@@ -233,8 +235,6 @@
     transition: font-size 0.1s linear, letter-spacing 0.1s linear;
     will-change: font-size;
   }
-
-  /* After the hero, the title lives in the header bar */
   .header-bar {
     position: fixed;
     top: 0;
@@ -266,8 +266,6 @@
     letter-spacing: 0.03em;
     color: var(--line);
   }
-
-  /* ---------- CONTENT SECTIONS ---------- */
   .section {
     min-height: 60vh;
     padding: 80px 8%;
@@ -296,42 +294,62 @@
   footer a { color: var(--accent); text-decoration: none; }
   footer a:hover { text-decoration: underline; }
 
-nav button a {
-  text-decoration: none;
-  color: inherit;
-}
 
 /* ---------- REZOLVARE MOBIL (DOAR CSS) ---------- */
 @media (max-width: 768px) {
 
-  /* 1. PERMITE SCROLL VERTICAL ÎN SIDEBAR */
   .sidebar {
     width: 85vw;
     max-height: 100vh;
     max-height: 100dvh;
-    overflow-y: auto !important; /* Activează scroll-ul când submeniurile extind lista */
+    overflow-y: auto !important;
     -webkit-overflow-scrolling: touch;
   }
-
   .nav-list {
-    padding-bottom: 60px; /* Spațiu la final ca să poți face scroll ușor */
+    padding-bottom: 60px; 
   }
 
-  /* 2. SCHIMBĂ SUBMENIURILE DIN ZBURĂTOARE (DREAPTA) ÎN DROPDOWN (JOS) */
+
+/*   
   .sub-list,
   .subsub-list {
-    position: static !important; /* Scoate elementul din afara fluxului și îl pune direct sub buton */
+    position: static !important; 
     left: auto !important;
     top: auto !important;
     width: 100% !important;
     min-width: 100% !important;
     box-shadow: none !important;
     border: none !important;
-    border-left: 2px solid var(--accent); /* Linie vizuală de ghidaj */
+    border-left: 2px solid var(--accent); 
+    background: rgba(0, 0, 0, 0.03);
+    display: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+  .subsub-list {
+    background: rgba(0, 0, 0, 0.06);
+  }
+  .nav-item.hovered > .sub-list,
+  .sub-item.hovered > .subsub-list {
+    display: block !important;
+  }
+  .nav-item:focus-within > .sub-list,
+  .sub-item:focus-within > .subsub-list {
+    display: block !important;
+  } */
+
+
+  .sub-list,
+  .subsub-list {
+    position: static !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-left: 2px solid var(--accent);
     background: rgba(0, 0, 0, 0.03);
     
-    /* Stare inițială ascunsă (restrânsă) */
-    display: none !important;
+    display: none !important; /* Se ascund implicit */
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;
@@ -341,24 +359,14 @@ nav button a {
     background: rgba(0, 0, 0, 0.06);
   }
 
-  /* 3. DESCHIDEREA SUBMENIULUI (CÂND PARENT-UL ARE CLASA .hovered) */
-  .nav-item.hovered > .sub-list,
-  .sub-item.hovered > .subsub-list {
+  /* Afișăm submeniul DOAR dacă părintele are clasa .open adăugată de JS */
+  .nav-item.open > .sub-list,
+  .sub-item.open > .subsub-list {
     display: block !important;
   }
-
-  /* 4. REZOLVARE ÎNCHIDERE PE MOBIL (STARE ACTIVE / FOCUS) */
-  /* Pe ecran tactil, `:focus-within` permite deschiderea la apăsare și închiderea când apeși în altă parte */
-  .nav-item:focus-within > .sub-list,
-  .sub-item:focus-within > .subsub-list {
-    display: block !important;
-  }
-
-  /* 5. INDENTARE TEXT PENTRU IERARHIE CĂUTATĂ */
   .sub-list li > button {
     padding-left: 30px;
   }
-
   .subsub-list li > a {
     padding-left: 45px;
   }
